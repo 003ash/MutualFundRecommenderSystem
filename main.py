@@ -1,10 +1,11 @@
 from flask import Flask, request, render_template
 import pickle
+from bs4 import BeautifulSoup
 
 import pandas as pd
 import numpy as np
 
-file_path = "recommender\ProcessedData2_with_cluster.csv"
+file_path = "ProcessedData2_with_cluster.csv"
 df_w_cluster = pd.read_csv(file_path)
 
 risk_dic = {"Conservative":1,"Moderately Conservative":2,"Moderately Agressive":3,
@@ -71,7 +72,7 @@ def recommended_funds(Fund_type,Risk_profile,Min_inves,Duration_of_investment):
     print("Final Cluster: " + str(final_cluster))
     print('There are {} results '.format(new_df.shape[0]))
     print("Top 5 returns: ")
-    result = new_df[new_df['kmeans_1']==final_cluster][['Scheme_name','Category','Fund_Manager_Tenure','Return_1m','Return_3m','Return_6m']].sort_values(by=['Fund_Manager_Tenure',dur],ascending = False).head()
+    result = new_df[new_df['kmeans_1']==final_cluster][['Scheme_name','Category','Fund_Manager_Tenure','Return_1m','Return_3m','Return_6m','Return_1yr']].sort_values(by=['Fund_Manager_Tenure',dur],ascending = False).head()
     return result 
 
 def detrmineRiskCapacity(pts):
@@ -128,11 +129,11 @@ def forms():
     #inputs.append(name)
     
     with open(file_path, "rb") as file:
+
         output=recommended_funds(fundType,riskCapacity,minInvestment,duration_dic[investmentDuration])
-    
+        output=output.to_html()
     return render_template("output.html",output=output ,title="HOME PAGE")
     
-
 
 if __name__ == "__main__":
     app.run(debug=True)
