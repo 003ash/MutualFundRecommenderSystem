@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Montserrat:200,400,800&display=swap"
+            rel="stylesheet"
+        />
+        
+        <title>Clockworks</title>
+        <style>
+            body,
+            button,
+            input {
+                font-family: "Montserrat", sans-serif;
+            }
+
+            body {
+                margin: 72px 140px 0px;
+            }
+
+            h1 {
+                font-weight: 800;
+                font-size: 54px;
+            }
+
+            #controls {
+                display: inline-block;
+                width: 46%;
+                border-right: 1px solid rgba(0, 0, 0, 0.4);
+            }
+
+            .input-group {
+                margin: 20px 0;
+            }
+
+            label {
+                display: inline-block;
+                width: 36%;
+                font-weight: 200;
+                font-size: 24px;
+                padding: 12px;
+            }
+            input {
+                width: 40%;
+                font-size: 16px;
+                border: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+                padding-left: 6px;
+                font-weight: 200;
+                outline: none;
+            }
+
+            button {
+                color: white;
+                font-size: 16px;
+                padding: 12px 62px;
+                background-color: #222222;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+
+            button:enabled:hover {
+                color: black;
+                background-color: white;
+                border: 1px solid;
+                padding: 11px 61px;
+            }
+
+            button:disabled {
+                opacity: 0.1;
+            }
+
+            h2 {
+                display: inline-block;
+                vertical-align: top;
+                font-weight: 200;
+                font-size: 144px;
+                margin: 12px 0;
+                padding-left: 100px;
+            }
+
+        </style>
+    </head>
+
+
+    <body>
+        <h1>Mutual Funds Recommender</h1>
+
+        <form action="{{ url_for('forms')}}" method="post">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="fname" >
+            <br>
+
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lname" >
+            <br>
+
+            <label for="age">Age:</label>
+            <select name="age" id ="age">
+                <option value=1>&lt;25 years</option>
+                <option value=2>25-35 years</option>
+                <option value=3>36-45 years</option>
+                <option value=4>46-55 years</option>
+                <option value=5>&gt;55 years</option>
+            </select>
+            <br>
+
+            <label for="empStatus">Current Employment Status:</label>
+            <select name="empStatus" id ="empStatus">
+                <option value=1>Unemployed</option>
+                <option value=4>Employed full-time</option>
+                <option value=3>Employed part-time</option>
+                <option value=2>Self-employed</option>
+                <option value=5>Retired</option>
+                
+            </select>
+            <br>
+
+            <label for="income">Annual Income Range:</label>            
+            <select name="income" id ="income">
+                <option value=1>&lt;₹2,00,000</option>
+                <option value=2>₹2,00,000 to ₹5,00,000</option>
+                <option value=3>₹5,00,000 to ₹10,00,000</option>
+                <option value=4>₹10,00,000 to ₹50,00,000</option>
+                <option value=5>&gt;₹50,00,000</option>
+            </select>
+            <br>
+
+            <label for="minInvestment">Minimum Investment:</label>
+            <input type="number" id="minInvestment" name="minInvestment" >
+            <br>
+
+            <label for="investmentObjective">Investment Objective:</label>            
+            <select name="investmentObjective" id ="investmentObjective">
+                <option value=1>Capital preservation</option>
+                <option value=2>Income</option>
+                <option value=3>Growth</option>
+                <option value=4>Aggressive growth</option>
+            </select>
+            <br>
+
+            <label for="investmentDuration">Investment Duration:</label>
+            <select name="investmentDuration" id ="investmentDuration">
+                <option value="0.25">1 Week</option>
+                <option value="1">1 Month</option>
+                <option value="3">3 Months</option>
+                <option value="6">6 Months</option>
+                <option value="12">1 Year</option>
+                <option value="36">3 Years</option>
+                <option value="60">5 Years</option>
+                <option value="120">&gt; 10 Years</option>
+            </select>
+            <br>
+
+            <label for="riskTolerance">Risk Tolerance:</label>
+            <select name="riskTolerance" id ="riskTolerance">
+                <option value=1>Extremely conservative</option>
+                <option value=2>Conservative</option>
+                <option value=3>Moderate</option>
+                <option value=4>Aggressive</option>
+                <option value=5>Extremely aggressive</option>
+            </select>
+            <br>
+
+            <label for="reactionTo10%Decline">How would you react to a 10% decline in your portfolio value in a short period of time?</label>
+            <select name="reactionTo10%Decline" id ="reactionTo10%Decline">
+                <option value=1>Sell all my investments</option>
+                <option value=2>Sell some of my investments</option>
+                <option value=3>Do nothing and wait for the market to recover</option>   
+                <option value=4>Buy more investments</option>
+            </select>
+            <br>
+
+            <label for="highRiskAllocation">How much of your portfolio are you willing to allocate to higher risk investments?</label>
+            <select name="highRiskAllocation" id ="highRiskAllocation">
+                <option value=1>None</option>
+                <option value=2>&lt;10%</option>
+                <option value=3>10%-25%</option>   
+                <option value=4>25%-50%</option> 
+                <option value=5>&gt;50%</option>
+            </select>
+            <br>
+            
+            <br>
+            <button type="submit">Get Recommendation</button>
+            <br>
+            <br>
+        
+            
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+       
+    </body>
+</html>
+
