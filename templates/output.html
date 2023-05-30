@@ -16,6 +16,7 @@
 
         body {
             margin: 72px 140px 0px;
+            align-content: center;
         }
 
         h1 {
@@ -73,21 +74,18 @@
         }
 
         h2 {
-            display: inline-block;
-            vertical-align: top;
-            font-weight: 200;
-            font-size: 144px;
-            margin: 12px 0;
-            padding-left: 100px;
+            font-weight: 400;
+            font-size: 60px;
+            text-align: center;
         }
     </style>
 </head>
 
 
 <body>
-    <h1>Your Recommendation</h1>
+    <h2>Recommendations for {{name}}</h2>
 
-    {{output | safe}}
+    <div style="text-align: center;">{{output | safe}}</div>
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
