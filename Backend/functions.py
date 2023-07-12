@@ -18,7 +18,7 @@ def round_ceiling(number):
     return min(i for i in list_keys if i >= number)
 
 def recommended_funds(fund_type_list,Risk_profile,Min_inves,Duration_of_investment):
-    file_path = "Backend\ProcessedData2_with_cluster.csv"
+    file_path = "ProcessedData2_with_cluster.csv"
     df_w_cluster = pd.read_csv(file_path)
     dur = Duration_of_investment
     risk_quantile = risk_dic[Risk_profile]/len(risk_dic)     # Risk quantile [0.2, 0.4, 0.6 , 0.8, 1]
