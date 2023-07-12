@@ -1,6 +1,9 @@
 from flask import Flask, request, render_template
 import pickle
 from bs4 import BeautifulSoup
+import sys
+sys.path.append("Backend")
+sys.path.append("Frontend")
 from functions import recommended_funds, duration_dic, final_score
 
 import pandas as pd

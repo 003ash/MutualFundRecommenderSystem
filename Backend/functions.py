@@ -18,7 +18,7 @@ def round_ceiling(number):
     return min(i for i in list_keys if i >= number)
 
 def recommended_funds(fund_type_list,Risk_profile,Min_inves,Duration_of_investment):
-    file_path = "ProcessedData2_with_cluster.csv"
+    file_path = "Backend\ProcessedData2_with_cluster.csv"
     df_w_cluster = pd.read_csv(file_path)
     dur = Duration_of_investment
     risk_quantile = risk_dic[Risk_profile]/len(risk_dic)     # Risk quantile [0.2, 0.4, 0.6 , 0.8, 1]
@@ -51,9 +51,9 @@ def recommended_funds(fund_type_list,Risk_profile,Min_inves,Duration_of_investme
     vol_clust_mean = new_df.groupby(['kmeans_1'])['Standard Deviation'].agg([np.mean]).sort_values(by=['mean'],ascending = False)
     vol_clust_mean['dif'] = vol_clust_mean['mean'].map(lambda x: np.absolute(x-vol_quantile_value))
     final_cluster = vol_clust_mean.sort_values(by=['dif']).index[0]
-    print("Final Cluster: " + str(final_cluster))
-    print('There are {} results '.format(new_df.shape[0]))
-    print("Top 5 returns: ")
+   #  print("Final Cluster: " + str(final_cluster))
+   #  print('There are {} results '.format(new_df.shape[0]))
+   #  print("Top 5 returns: ")
     result = new_df[new_df['kmeans_1']==final_cluster][['Scheme_name','Category','Fund_Manager_Tenure','Return_1wk','Return_1m','Return_3m','Return_6m','Return_1yr','Return_3yr','Return_5yr','Return_10yr']]
     df_list.append(result)
     r1 = pd.concat(df_list)
